@@ -66,6 +66,7 @@ LOCAL_MODULE_CLASS := JAVA_LIBRARIES
 LOCAL_MODULE := material-dialogs-core-matlog-target
 LOCAL_SRC_FILES := libs/aar/material-dialogs-core-0.9.4.2.aar
 LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SDK_VERSION := current
 
 include $(BUILD_PREBUILT)
 
@@ -75,6 +76,7 @@ LOCAL_MODULE_CLASS := JAVA_LIBRARIES
 LOCAL_MODULE := material-dialogs-commons-matlog-target
 LOCAL_SRC_FILES := libs/aar/material-dialogs-commons-0.9.4.2.aar
 LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SDK_VERSION := current
 
 include $(BUILD_PREBUILT)
 
@@ -84,5 +86,6 @@ LOCAL_MODULE_CLASS := JAVA_LIBRARIES
 LOCAL_MODULE := material-progressbar-library-matlog-target
 LOCAL_SRC_FILES := libs/aar/material-progressbar-library-1.3.0.aar
 LOCAL_UNINSTALLABLE_MODULE := true
+LOCAL_SDK_VERSION := current
 
 include $(BUILD_PREBUILT)
