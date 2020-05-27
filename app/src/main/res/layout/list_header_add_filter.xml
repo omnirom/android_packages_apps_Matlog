@@ -21,9 +21,8 @@
         android:layout_marginLeft="72dp"
         android:layout_marginRight="24dp"
         android:layout_marginStart="72dp"
-        android:ellipsize="marquee"
         android:text="@string/add_filter_ellipsis"
         android:textSize="16sp"
-        android:maxLines="1" />
+        android:singleLine="true"/>
 
 </RelativeLayout>
