@@ -11,7 +11,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:clickable="false"
         android:focusable="false"
@@ -22,16 +21,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginRight="24dp"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="16dp"
         android:ellipsize="marquee"
         android:gravity="center_vertical"
-        android:textColor="@color/primary_text_default_material_dark"
         android:textSize="16sp"
         tools:text="TEST"
-        android:maxLines="1" />
+        android:singleLine="true" />
 
     <TextView
         android:id="@android:id/text2"
@@ -39,12 +35,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@android:id/text1"
         android:layout_marginEnd="24dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginRight="24dp"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="60dp"
         android:ellipsize="marquee"
-        android:textColor="@color/secondary_text_default_material_dark"
         android:textSize="14sp"
         tools:text="TEST"
-        android:maxLines="1" />
+        android:singleLine="true" />
 </RelativeLayout>

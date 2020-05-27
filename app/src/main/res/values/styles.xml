@@ -1,37 +1,28 @@
 <resources>
 
-    <style name="Theme.MatLog" parent="Base.Theme.MatLog">
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="toolbarShadow">@drawable/shadow</item>
-    </style>
-
-    <style name="Base.Theme.MatLog" parent="@style/Theme.AppCompat.NoActionBar">
+    <style name="Theme.MatLog" parent="@style/Theme.AppCompat.DayNight.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary</item>
         <item name="colorAccent">@color/accent</item>
-        <!--<item name="selectableItemBackground">@drawable/item_background_light</item>
-        <item name="android:selectableItemBackground">@drawable/item_background_light</item>-->
-
-        <item name="android:textColor">?android:textColorPrimary</item>
-
-        <item name="actionModeBackground">?colorPrimary</item>
-
-        <item name="windowActionModeOverlay">true</item>
-
-        <!--<item name="activatedBackground">@drawable/activated_background_light</item>-->
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
     </style>
 
-    <style name="Theme.MatLog.AlertDialog" parent="@style/Theme.AppCompat.Dialog.Alert">
+    <style name="Theme.MatLog.AlertDialog" parent="@style/Theme.AppCompat.DayNight.Dialog.Alert">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary</item>
         <item name="colorAccent">@color/accent</item>
-
         <item name="android:colorPrimary">@color/primary</item>
         <item name="android:colorPrimaryDark">@color/primary</item>
         <item name="android:colorAccent">@color/accent</item>
-
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="Theme.MatLog.Toolbar" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <item name="titleTextColor">@android:color/white</item>
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="android:textColorHint">@android:color/white</item>
+        <item name="android:editTextColor">@android:color/white</item>
+    </style>
 </resources>
