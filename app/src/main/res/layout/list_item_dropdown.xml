@@ -26,6 +26,6 @@
     android:gravity="center_vertical"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-    android:textSize="16sp"
     tools:text="TESTSDFSDFD"
-    android:maxLines="1" />
+    android:singleLine="true"
+    android:textAppearance="@android:style/TextAppearance.Material.Menu"/>
