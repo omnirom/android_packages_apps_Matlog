@@ -75,7 +75,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="org.omnirom.logcat.provider"
+            android:authorities="org.omnirom.logcat.provider.debug"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

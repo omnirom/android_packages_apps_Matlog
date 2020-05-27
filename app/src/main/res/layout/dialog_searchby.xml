@@ -5,8 +5,8 @@
     android:layout_height="wrap_content"
     android:baselineAligned="false"
     android:orientation="horizontal"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp">
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp">
 
     <LinearLayout
         android:id="@id/dialog_searchby_tag_linear"
@@ -24,7 +24,7 @@
             android:paddingBottom="8dp"
             android:text="@string/filter_choice_tag"
             android:textSize="16sp"
-            android:maxLines="1" />
+            android:singleLine="true" />
 
         <TextView
             android:id="@id/dialog_searchby_tag_text"
@@ -32,11 +32,10 @@
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
             android:padding="8dp"
-            android:textColor="@color/secondary_text_default_material_dark"
             android:textSize="12sp"
-            android:typeface="monospace"
+            android:fontFamily="@font/roboto_mono_family"
             tools:text="text"
-            android:maxLines="1" />
+            android:singleLine="true" />
 
     </LinearLayout>
 
@@ -56,7 +55,7 @@
             android:paddingBottom="8dp"
             android:text="@string/filter_choice_pid"
             android:textSize="16sp"
-            android:maxLines="1" />
+            android:singleLine="true" />
 
         <TextView
             android:id="@id/dialog_searchby_pid_text"
@@ -64,11 +63,11 @@
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
             android:padding="8dp"
-            android:textColor="@color/secondary_text_default_material_dark"
+            android:textColor="@android:color/white"
             android:textSize="12sp"
-            android:typeface="monospace"
+            android:fontFamily="@font/roboto_mono_family"
             tools:text="text"
-            android:maxLines="1" />
+            android:singleLine="true" />
 
     </LinearLayout>
 
