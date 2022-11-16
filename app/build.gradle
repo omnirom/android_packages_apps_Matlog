@@ -32,6 +32,11 @@ android {
     lint {
         checkReleaseBuilds false
     }
+    sourceSets {
+        main {
+            res.srcDirs = ['src/main/res', 'src/main/res-private']
+        }
+    }
 }
 
 dependencies {
