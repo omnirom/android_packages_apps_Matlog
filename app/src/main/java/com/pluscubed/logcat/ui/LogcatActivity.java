@@ -1,7 +1,6 @@
 package com.pluscubed.logcat.ui;
 
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -301,10 +300,11 @@ public class LogcatActivity extends AppCompatActivity implements FilterListener,
             case "record":
                 String logFilename = DialogHelper.createLogFilename();
                 String defaultLogLevel = Character.toString(PreferenceHelper.getDefaultLogLevelPreference(this));
-
-                DialogHelper.startRecordingWithProgressDialog(logFilename, "", defaultLogLevel, new Runnable() {
+                showProgressBar();
+                DialogHelper.startRecording(logFilename, "", defaultLogLevel, new Runnable() {
                     @Override
                     public void run() {
+                        hideProgressBar();
                         finish();
                     }
                 }, this);
@@ -1156,18 +1156,13 @@ public class LogcatActivity extends AppCompatActivity implements FilterListener,
     protected void sendLogToTargetApp(final boolean includeDeviceInfo, final boolean includeDmesg) {
         final Handler ui = new Handler(Looper.getMainLooper());
         new Thread(new Runnable() {
-            private ProgressDialog mDialog;
-
             @Override
             public void run() {
                 ui.post(new Runnable() {
                     @Override
                     public void run() {
                         if (mCurrentlyOpenLog == null || includeDeviceInfo || includeDmesg) {
-                            mDialog = ProgressDialog.show(LogcatActivity.this,
-                                    getResources().getString(R.string.dialog_please_wait),
-                                    getResources().getString(R.string.dialog_compiling_log),
-                                    true, false);
+                            showProgressBar();
                         }
                     }
                 });
@@ -1177,9 +1172,7 @@ public class LogcatActivity extends AppCompatActivity implements FilterListener,
                     public void run() {
                         startChooser(LogcatActivity.this, sendLogDetails.getSubject(), sendLogDetails.getBody(),
                                 sendLogDetails.getAttachmentType(), sendLogDetails.getAttachment());
-                        if (mDialog != null && mDialog.isShowing()) {
-                            mDialog.dismiss();
-                        }
+                        hideProgressBar();
                     }
                 });
             }
@@ -1190,7 +1183,6 @@ public class LogcatActivity extends AppCompatActivity implements FilterListener,
     protected void saveLogToTargetApp(final boolean includeDeviceInfo, final boolean includeDmesg) {
         final Handler ui = new Handler(Looper.getMainLooper());
         new Thread(new Runnable() {
-            private ProgressDialog mDialog;
 
             @Override
             public void run() {
@@ -1198,10 +1190,7 @@ public class LogcatActivity extends AppCompatActivity implements FilterListener,
                     @Override
                     public void run() {
                         if (mCurrentlyOpenLog == null || includeDeviceInfo || includeDmesg) {
-                            mDialog = ProgressDialog.show(LogcatActivity.this,
-                                    getResources().getString(R.string.dialog_please_wait),
-                                    getResources().getString(R.string.dialog_compiling_log),
-                                    true, false);
+                            showProgressBar();
                         }
                     }
                 });
@@ -1209,9 +1198,7 @@ public class LogcatActivity extends AppCompatActivity implements FilterListener,
                 ui.post(new Runnable() {
                     @Override
                     public void run() {
-                        if (mDialog != null && mDialog.isShowing()) {
-                            mDialog.dismiss();
-                        }
+                        hideProgressBar();
                         Toast.makeText(getApplicationContext(), R.string.log_saved, Toast.LENGTH_SHORT).show();
                     }
                 });
