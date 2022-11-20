@@ -1,6 +1,5 @@
 package com.pluscubed.logcat.ui;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.ClipData;
@@ -9,10 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
 import android.database.MatrixCursor;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -43,12 +39,8 @@ import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
-
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.pluscubed.logcat.LogcatRecordingService;
-import com.pluscubed.logcat.data.ColorScheme;
 import com.pluscubed.logcat.data.FilterAdapter;
 import com.pluscubed.logcat.data.LogFileAdapter;
 import com.pluscubed.logcat.data.LogLine;
@@ -65,14 +57,12 @@ import com.pluscubed.logcat.helper.DialogHelper;
 import com.pluscubed.logcat.helper.DmesgHelper;
 import com.pluscubed.logcat.helper.PreferenceHelper;
 import com.pluscubed.logcat.helper.SaveLogHelper;
-import com.pluscubed.logcat.helper.ServiceHelper;
 import com.pluscubed.logcat.intents.Intents;
 import com.pluscubed.logcat.reader.LogcatReader;
 import com.pluscubed.logcat.reader.LogcatReaderLoader;
 import com.pluscubed.logcat.util.ArrayUtil;
 import com.pluscubed.logcat.util.LogLineAdapterUtil;
 import com.pluscubed.logcat.util.StringUtil;
-import com.pluscubed.logcat.util.Util;
 import com.pluscubed.logcat.util.UtilLogger;
 
 import org.omnirom.logcat.R;
@@ -88,22 +78,17 @@ import java.util.Set;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.menu.MenuBuilder;
-import androidx.appcompat.view.menu.MenuItemImpl;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
-import androidx.core.graphics.ColorUtils;
 import androidx.core.view.WindowCompat;
 import androidx.cursoradapter.widget.CursorAdapter;
 import androidx.cursoradapter.widget.SimpleCursorAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static android.provider.DocumentsContract.EXTRA_INITIAL_URI;
 import static com.pluscubed.logcat.data.LogLineViewHolder.CONTEXT_MENU_CLEAR;
 import static com.pluscubed.logcat.data.LogLineViewHolder.CONTEXT_MENU_COPY_ID;
 import static com.pluscubed.logcat.data.LogLineViewHolder.CONTEXT_MENU_EXPAND_ALL;
@@ -129,6 +114,8 @@ public class LogcatActivity extends AppCompatActivity implements FilterListener,
     private static final int SHOW_RECORD_LOG_REQUEST = 6;
     private static final int SHOW_RECORD_LOG_REQUEST_SHORTCUT = 7;
     private static final int SAVE_LOG_ZIP_REQUEST = 8;
+
+    private static final int NUM_FILLER_ITEMS = 7;
 
     private static UtilLogger log = new UtilLogger(LogcatActivity.class);
 
@@ -230,9 +217,11 @@ public class LogcatActivity extends AppCompatActivity implements FilterListener,
 
                 if (currentTask != null) {
                     if (currentTask.isPaused()) {
+                        mLogListAdapter.removeLast(NUM_FILLER_ITEMS);
                         currentTask.unpause();
                     } else {
                         currentTask.pause();
+                        addFillerLines();
                     }
                 }
                 updateFabStatus();
@@ -247,7 +236,7 @@ public class LogcatActivity extends AppCompatActivity implements FilterListener,
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
 
 
-        ((BottomAppBar) findViewById(R.id.bottomAppBar)).setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener(){
+        ((BottomAppBar) findViewById(R.id.bottomAppBar)).setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
@@ -1926,5 +1915,15 @@ public class LogcatActivity extends AppCompatActivity implements FilterListener,
         if (mLogListAdapter != null) {
             mLogListAdapter.clear();
         }
+    }
+
+    private void addFillerLines() {
+        for (int i = 0; i < NUM_FILLER_ITEMS; i++) {
+            mLogListAdapter.add(LogLine.newLogLine("", PreferenceHelper.getExpandedByDefaultPreference(this)), false);
+        }
+        mLogListAdapter.notifyDataSetChanged();
+
+        // scroll to bottom
+        scrollToBottom();
     }
 }
