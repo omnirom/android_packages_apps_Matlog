@@ -1025,7 +1025,7 @@ public class LogcatActivity extends AppCompatActivity implements FilterListener,
             }
         });
 
-        final CheckBox includeDmesgCheckBox = (CheckBox) includeDeviceInfoView.findViewById(R.id.checkbox_dmesg);
+        /*final CheckBox includeDmesgCheckBox = (CheckBox) includeDeviceInfoView.findViewById(R.id.checkbox_dmesg);
 
         // allow user to choose whether or not to include device info in report, use preferences for persistence
         includeDmesgCheckBox.setChecked(PreferenceHelper.getIncludeDmesgPreference(this));
@@ -1035,7 +1035,8 @@ public class LogcatActivity extends AppCompatActivity implements FilterListener,
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 PreferenceHelper.setIncludeDmesgPreference(LogcatActivity.this, isChecked);
             }
-        });
+        });*/
+        PreferenceHelper.setIncludeDmesgPreference(LogcatActivity.this, false);
 
         new AlertDialog.Builder(LogcatActivity.this)
                 .setTitle(R.string.share_log)
@@ -1064,7 +1065,7 @@ public class LogcatActivity extends AppCompatActivity implements FilterListener,
             }
         });
 
-        final CheckBox includeDmesgCheckBox = (CheckBox) includeDeviceInfoView.findViewById(R.id.checkbox_dmesg);
+        /*final CheckBox includeDmesgCheckBox = (CheckBox) includeDeviceInfoView.findViewById(R.id.checkbox_dmesg);
 
         // allow user to choose whether or not to include device info in report, use preferences for persistence
         includeDmesgCheckBox.setChecked(PreferenceHelper.getIncludeDmesgPreference(this));
@@ -1074,7 +1075,8 @@ public class LogcatActivity extends AppCompatActivity implements FilterListener,
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 PreferenceHelper.setIncludeDmesgPreference(LogcatActivity.this, isChecked);
             }
-        });
+        });*/
+        PreferenceHelper.setIncludeDmesgPreference(LogcatActivity.this, false);
 
         new AlertDialog.Builder(LogcatActivity.this)
                 .setTitle(R.string.save_log_zip)
